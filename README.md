@@ -5,7 +5,7 @@ The parameters are chosen so that any population will evenutally die out, and th
 The graph of population vs. time for the random seed used in the example is show below:
 ![Doomed Population](./Selection_105.png)
 
-Example JSON structures:
+Example JSON samples from this population:
 
 ```json
 
