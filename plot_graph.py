@@ -22,9 +22,8 @@ def plot_family_tree(data):
            for dat in person['cousins']:
                G.add_edge(dat, person['name'],color='b',weight=18)
 
-   # Draw the graph using a circular layout
+   # Draw the graph
    colors = nx.get_edge_attributes(G,'color').values()
-   #pos = nx.circular_layout(G)
    pos = nx.kamada_kawai_layout(G)
    nx.draw_networkx_nodes(G, pos, node_size=500)
    nx.draw_networkx_labels(G, pos, {person['name']: person['name'] for person in data})
