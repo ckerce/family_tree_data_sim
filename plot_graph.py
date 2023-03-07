@@ -10,7 +10,7 @@ def plot_family_tree(data):
    for person in data:
        G.add_node(person['name'])
 
-   # Add edges for parent and spouse relationships
+   # Add edges for parent, spouse, and cousin relationships
    for person in data:
        if 'father' in person:
            G.add_edge(person['father'], person['name'],color='k')
