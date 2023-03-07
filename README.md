@@ -1,5 +1,7 @@
 # family_tree
-A moderately simple piece of code to model a trivially simplified family tree.  This was created for the purpose of testing some of the neural inductive logic programming solvers from our research group.  In such analysis, it is important to be able to inject "noise" on the relational graph, and to examine the effect of average sample size to learning quality statistics.  Note: The cousin relationship is not currently implemented correctly, as can be seen in the samples below.
+A moderately simple piece of code to model a trivially simplified family tree.  
+
+This was created for the purpose of testing some of the neural inductive logic programming solvers from our research group.  In such analysis, it is important to be able to inject "noise" on the relational graph, and to examine the effect of average sample size to learning quality statistics.  Note: The cousin relationship is not currently implemented correctly, as can be seen in the samples below.
 
 The parameters are chosen so that any population will evenutally die out, and then a long-lived population is chosen by monte-carlo sampling.
 The graph of population vs. time for the random seed used in the example is show below:
