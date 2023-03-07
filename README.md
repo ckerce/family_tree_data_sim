@@ -17,5 +17,6 @@ Example JSON samples from this population:
 {"name": 425, "gender": "male", "birth_year": 864, "death_year": 945, "spouse": 419, "father": 413, "mother": 408, "grandfather": 404, "grandmother": 397, "children": [436, 438], "cousins": [424]}
 
 ```
-And a section out of the full graph.  Red = spouse, Black = parent, Blue = cousin.
+And a section out of the full graph. The edge color key is as follows:
+Red = spouse, Black = parent, Blue = cousin.
 ![Family Tree Graph](./Selection_108.png)
