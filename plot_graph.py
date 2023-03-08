@@ -2,6 +2,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import pydot
 from networkx.drawing.nx_pydot import graphviz_layout
+import numpy as np
 
 
 def plot_family_tree(data):
@@ -21,6 +22,10 @@ def plot_family_tree(data):
 
    #pos = graphviz_layout(G, prog='twopi')
    pos = graphviz_layout(G, prog='dot')
+   ppos = {}
+   for a in pos:
+      ppos[a] = (pos[a][0] + np.random.randn() * 5, pos[a][1] + np.random.randn() * 10)
+   pos = ppos
    colors = nx.get_edge_attributes(G,'color').values()
    nx.draw_networkx_nodes(G, pos, node_size=500)
    nx.draw_networkx_labels(G, pos, {person['name']: person['name'] for person in data},)
