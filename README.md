@@ -20,3 +20,7 @@ Example JSON samples from this population:
 And a section out of the full graph. The edge color key is as follows:
 Red = spouse, Black = parent, Blue = cousin.
 ![Family Tree Graph](./Selection_108.png)
+
+
+The family tree for some of the main Harry Potter characters.
+![Harry Potter Family Tree](./Selection_109.png)
