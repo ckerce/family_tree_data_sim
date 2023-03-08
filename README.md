@@ -22,5 +22,5 @@ Red = spouse, Black = parent, Blue = cousin.
 ![Family Tree Graph](./Selection_108.png)
 
 
-The family tree for some of the main Harry Potter characters.
+The family tree for some of the main Harry Potter characters, as reported by ChatGPT.
 ![Harry Potter Family Tree](./Selection_109.png)
