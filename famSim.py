@@ -26,6 +26,14 @@ def create_family_json(person):
         family_dict["siblings"] = [sibling.name for sibling in person.siblings]
     if person.cousins:
         family_dict["cousins"]  = [cousin.name for cousin in person.cousins]
+    if person.aunts:
+        family_dict["aunts"]  = [aunt.name for aunt in person.aunts]
+    if person.uncles:
+        family_dict["uncles"]  = [uncle.name for uncle in person.uncles]
+    if person.nephews:
+        family_dict["nephews"]  = [nephew.name for nephew in person.nephews]
+    if person.nieces:
+        family_dict["nieces"]  = [niece.name for niece in person.nieces]
     
     return json.dumps(family_dict)
 
@@ -72,6 +80,8 @@ class Person:
         self.cousins = []
         self.uncles = []
         self.aunts = []
+        self.nephews = []
+        self.nieces = []
         self.birthyear = year
         self.deathyear = None
         self.alive = True
@@ -102,8 +112,8 @@ class Person:
         if aunt not in self.aunts:
             self.aunts.append(aunt)
 
-    def add_nephew(self, newphew):
-        if nephew not in self.nephew:
+    def add_nephew(self, nephew):
+        if nephew not in self.nephews:
             self.nephews.append(nephew)
 
     def add_niece(self, niece):
@@ -159,6 +169,30 @@ def fill_cousin_relationships(p):
                     for target_child in parent.children:
                         for cousin in sibling_parent.children:
                             target_child.add_cousin(cousin)
+
+def fill_aunt_or_uncle_relationship(p):
+    # aunt_uncle is a sibling of child's parent
+    for person in p:
+        for sibling in person.siblings:
+            for child in person.children:
+               if sibling.gender == "male":
+                   child.add_uncle(sibling)
+               elif sibling.gender == "female":
+                   child.add_aunt(sibling)
+               else:
+                   print("Gender error")
+
+def fill_niece_or_nephew_relationship(p):
+    # aunt_uncle is a sibling of child's parent
+    for person in p:
+        for sibling in person.siblings:
+            for child in person.children:
+               if child.gender == "male":
+                   sibling.add_nephew(child)
+               elif child.gender == "female":
+                   sibling.add_niece(child)
+               else:
+                   print("Gender error")
 
 # create initial community
 def create_initial_population():
@@ -228,6 +262,9 @@ while len(p) < 750 and count_alive(p) < 10:
    fill_sibling_relationships(p)
    # TODO: Fill out cousin relationships ... I'm not convinced this works
    fill_cousin_relationships(p)
+   # Fill out aunt and uncle relationships
+   fill_aunt_or_uncle_relationship(p)
+   fill_niece_or_nephew_relationship(p)
 
 
 a = []
