@@ -1,7 +1,7 @@
 # Family Tree Simulation
 A moderately simple piece of code to model a trivially simplified family tree in a closed population.  
 
-This was created for the purpose of testing some of the neural inductive logic programming solvers from our research group.  In such analysis, it is important to be able to inject "noise" on the relational graph, and to examine the effect of average sample size to learning quality statistics.  I created this, in part, based on William Cohen's analysis of Tensorlog (https://arxiv.org/pdf/1605.06523.pdf).  
+This was created for the purpose of testing some of the neural inductive-logic-programming solvers from our research group.  In such analysis, it is important to be able to inject "noise" on the relational graph, and to examine the effect of average sample size to learning quality statistics.  I created this, in part, based on William Cohen's analysis of Tensorlog (https://arxiv.org/pdf/1605.06523.pdf).  
 
 I appreciate the simple graph evaluations Cohen uses, as they convey an intutive sense sense of the capability of the method. However, I feel there is a gap between the simple graphs he introduced and the more standard graph datasets researchers typically use in graph neural network and probabalistic logic programming evaluations. This simulation allows for some intuitive tunability of parameters like branching factor and width vs. depth, and can be extended to temporal and causal analysis by assigning "people" in the graph additional attributes.  Such attributes might include simple properties, like probabalistic age at death, or more sophisticated relationships, such as mentorship and skill transferance. 
 
