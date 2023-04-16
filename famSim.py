@@ -274,4 +274,11 @@ for person in p:
 
 for person in a:
     #print_family(person)
-    print( create_family_json(person) )
+    #print( create_family_json(person) )
+    w = json.loads(create_family_json(person))
+    for ww in w:
+      if type(w[ww]) == list:
+        for www in w[ww]:
+            print(www, ", _", ww,"_ ,", w['name'])
+      else:
+        print(w[ww],", _",ww,"_ ,", w['name'])
