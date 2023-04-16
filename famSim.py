@@ -17,9 +17,9 @@ def create_family_json(person):
     if person.mother:
         family_dict["mother"] = person.mother.name
     if person.grandfather:
-        family_dict["grandfather"] = person.grandfather.name
+        family_dict["grandfather"] = [p.name for p in person.grandfather]
     if person.grandmother:
-        family_dict["grandmother"] = person.grandmother.name
+        family_dict["grandmother"] = [p.name for p in person.grandmother]
     if person.children:
         family_dict["children"] = [child.name for child in person.children]
     if person.siblings:
@@ -73,8 +73,8 @@ class Person:
         self.spouse = None
         self.father = random.random()
         self.mother = random.random()
-        self.grandmother = random.random()
-        self.grandfather = random.random()
+        self.grandmother = [] 
+        self.grandfather = [] 
         self.children = []
         self.siblings = []
         self.cousins = []
@@ -253,9 +253,9 @@ while len(p) < 750 and count_alive(p) < 10:
        for c in person.children:
            for cc in c.children:
                if person.gender == "female":
-                   cc.grandmother = person
+                   cc.grandmother.append(person)
                else:
-                   cc.grandfather = person
+                   cc.grandfather.append(person)
    out.append(counts)
    
    # Fill out sibling relationships
