@@ -10,7 +10,7 @@ The family tree simulation is implemented in the **Person** class in **family_tr
 
 The Person class includes methods for creating and modifying family relationships, such as **marry()**, **add_child()**, **add_sibling()**, **add_cousin()**, **add_uncle()**, **add_aunt()**, **add_nephew()**, **add_niece()**, and **age()**.
 
-The simulation begins with an initial population of eight (8) individuals with two married couples, and iterates over a fixed number of time steps, during which individuals may be born, marry, and die according to specified probabilities.
+The simulation begins with an initial population of eight (8) individuals with two married couples, and iterates over a fixed number of time steps, during which individuals may be born, marry, and die according to specified probabilities.  Many familial relations are only defined positive if they are genetic relatives, e.g. cousins, nephews, grandparents, etc.  Therefore additional processing would need to be applied to get cousins by marriage. 
 
 The parameters are chosen so that any population will evenutally die out, and then a long-lived population is chosen by monte-carlo sampling.
 The graph of population vs. time for the random seed used in the example is show below:
@@ -18,9 +18,9 @@ The graph of population vs. time for the random seed used in the example is show
 Example JSON samples from this population look like this:
 ```json
 
-{"name": 424, "gender": "female", "birth_year": 863, "death_year": 944, "spouse": 422, "father": 415, "mother": 410, "grandfather": 404, "grandmother": 397, "children": [437, 443], "cousins": [419, 425]}
+{"name": 424, "gender": "female", "birth_year": 783, "death_year": 864, "spouse": 430, "father": 401, "mother": 390, "grandfather": [353, 368], "grandmother": [364, 365], "children": [463, 474], "siblings": [434], "cousins": [406, 429, 438, 427, 431, 435, 440, 413, 420, 426], "aunts": [394, 395, 382], "uncles": [380], "nephews": [472, 476]}
 
-{"name": 425, "gender": "male", "birth_year": 864, "death_year": 945, "spouse": 419, "father": 413, "mother": 408, "grandfather": 404, "grandmother": 397, "children": [436, 438], "cousins": [424]}
+{"name": 430, "gender": "male", "birth_year": 787, "death_year": 868, "spouse": 424, "father": 403, "mother": 384, "grandfather": [344, 371], "grandmother": [363, 372], "children": [463, 474], "siblings": [423], "cousins": [414, 418, 437], "uncles": [387], "nephews": [461], "nieces": [454, 464]}
 
 ```
 Here is a plot of a sample population over time:
