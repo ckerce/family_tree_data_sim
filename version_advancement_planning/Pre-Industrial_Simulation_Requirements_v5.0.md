@@ -35,7 +35,7 @@ This document specifies requirements for a discrete event simulation (DES) model
 * Remove agent from all central registries (e.g., sim.professions).  
 * Remove agent from all demographic indices (e.g., sim.unmarried\_males, sim.alive\_population\_count).  
 * Schedule an InheritanceEvent (REQ-BU-004).  
-* **Crucially:** Mark all active, non-immutable relationships (e.g., SPOUSE, APPRENTICE) as terminated by adding an end\_time to their metadata (REQ-RG-006).
+* **Crucially:** Mark all active, non-immutable relationships (e.g., PARTNER, APPRENTICE) as terminated by adding an end\_time to their metadata (REQ-RG-006).
 
 **REQ-AL-005:** All events MUST check is\_alive() upon execution.
 
@@ -47,25 +47,25 @@ This document specifies requirements for a discrete event simulation (DES) model
 
 **REQ-DE-002:** A BirthEvent SHALL:
 
-* Assign child attributes, including a gender balanced for the population.  
+* Assign child attributes, including a gender.
 * Create immutable PARENT relationships with a start\_time.  
 * Assign inherited aptitudes (e.g., average of parents \+ gauss(0, 0.15) noise).  
-* Re-validate parent liveness and marital status at execution time.
+* Re-validate parent liveness at execution time.
 
 **REQ-DE-003:** ReproductionCheckEvent SHALL trigger BirthEvent generation annually based on:
 
-* Female age (e.g., 20-50), *living* spouse, and existing children.  
+* Female age (e.g., 20-50), *living* partner, and existing children.  
 * Formula, e.g., P \= 0.32 / (1.0 \+ 2.0 \* children\_count).
 
 **REQ-DE-004:** System SHALL model marriages (MarriageEvent).
 
-* This event SHALL create symmetric SPOUSE relationships, each with a start\_time.
+* This event SHALL create symmetric PARTNER relationships, each with a start\_time.
 
 **REQ-DE-005:** MarriageMarketEvent SHALL trigger MarriageEvent generation annually.
 
 **REQ-DE-006:** Incest prevention SHALL block siblings, parent-child, and uncle/aunt-niece/nephew.
 
-**REQ-DE-007:** System SHALL support remarriage. MarriageMarketEvent and ReproductionCheckEvent MUST check spouse.is\_alive() and allow new relationships if spouse is deceased (via set\_person\_widowed logic).
+**REQ-DE-007:** System SHALL support remarriage. MarriageMarketEvent and ReproductionCheckEvent MUST check partner.is\_alive() and allow new relationships if partner is deceased (via set\_person\_widowed logic).
 
 ### **3.3 Relationship Graph (MUST HAVE)**
 

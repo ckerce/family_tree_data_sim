@@ -50,7 +50,7 @@ class Person:
 class RelationType(Enum):
     """Typed relationships between agents."""
     PARENT = "parent"
-    SPOUSE = "spouse"
+    PARTNER = "partner"
     APPRENTICE = "apprentice"
 
 

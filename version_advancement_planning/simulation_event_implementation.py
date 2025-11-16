@@ -40,8 +40,8 @@ class BirthEvent(Event):
            not mother.is_alive(self.time) or not father.is_alive(self.time):
             return
         
-        spouses = sim.relationships.get_outbound(self.mother_id, RelationType.SPOUSE, active_at_time=self.time)
-        if not spouses or spouses[0][0] != self.father_id:
+        partners = sim.relationships.get_outbound(self.mother_id, RelationType.SPOUSE, active_at_time=self.time)
+        if not partner or partner[0][0] != self.father_id:
             return
         
         # Calculate gender bias
@@ -133,17 +133,17 @@ class DeathEvent(Event):
         # 3. End active, mutable relationships (REQ-AL-004)
         
         # 3a. End SPOUSE relationships
-        active_spouses = sim.relationships.get_outbound(
+        active_partners = sim.relationships.get_outbound(
             self.person_id, RelationType.SPOUSE, active_at_time=self.time
         )
-        for spouse_id, _, _ in active_spouses:
-            sim.relationships.end_relationship(self.person_id, spouse_id, RelationType.SPOUSE, self.time)
-            sim.relationships.end_relationship(spouse_id, self.person_id, RelationType.SPOUSE, self.time)
+        for partner_id, _, _ in active_partners:
+            sim.relationships.end_relationship(self.person_id, pargner_id, RelationType.SPOUSE, self.time)
+            sim.relationships.end_relationship(pargner_id, self.person_id, RelationType.SPOUSE, self.time)
             
-            # Set living spouse to widowed
-            spouse = sim.population[spouse_id]
-            if spouse.is_alive(self.time):
-                sim.set_person_widowed(spouse_id, spouse.gender)
+            # Set living pargner to widowed
+            pargner = sim.population[pargner_id]
+            if pargner.is_alive(self.time):
+                sim.set_person_widowed(pargner_id, pargner.gender)
         
         # 3b. End APPRENTICE relationships (as master)
         active_apprentices = sim.relationships.get_outbound(
@@ -188,7 +188,7 @@ class InheritanceEvent(Event):
 
 
 class MarriageEvent(Event):
-    """Create temporal spouse relationship and update indices."""
+    """Create temporal pargner relationship and update indices."""
     
     def __init__(self, time: float, person_a: int, person_b: int):
         super().__init__(time)
@@ -231,12 +231,12 @@ class ReproductionCheckEvent(Event):
             if not (20 <= person.age(self.time) <= 50):
                 continue
 
-            spouses = sim.relationships.get_outbound(person.id, RelationType.SPOUSE, active_at_time=self.time)
-            if not spouses:
+            pargners = sim.relationships.get_outbound(person.id, RelationType.SPOUSE, active_at_time=self.time)
+            if not pargners:
                 continue
             
-            spouse_id = spouses[0][0]
-            if not sim.population[spouse_id].is_alive(self.time):
+            pargner_id = pargners[0][0]
+            if not sim.population[pargner_id].is_alive(self.time):
                 continue
                 
             children_count = len(sim.relationships.get_outbound(person.id, RelationType.PARENT))
@@ -249,7 +249,7 @@ class ReproductionCheckEvent(Event):
             birth_prob = base_prob / (1.0 + 2.0 * children_count)
             
             if sim.rng.random() < birth_prob:
-                sim.schedule(BirthEvent(self.time, person.id, spouse_id))
+                sim.schedule(BirthEvent(self.time, person.id, pargner_id))
         
         sim.schedule(ReproductionCheckEvent(self.time + 365))
 

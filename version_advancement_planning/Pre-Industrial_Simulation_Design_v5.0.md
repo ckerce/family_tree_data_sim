@@ -37,7 +37,7 @@ Event \- DeathEvent (t \= T):
     → Query graph for \*active\* relationships (SPOUSE, APPRENTICE)  
     → FOR rel in active\_relationships:  
         → sim.relationships.end\_relationship(..., end\_time=T)  
-    → Find living spouse, call sim.set\_person\_widowed()  
+    → Find living partner, call sim.set\_person\_widowed()  
     → call sim.remove\_person\_from\_indices()  
       
 Event \- GraduateApprenticeshipEvent (t \= T):  
@@ -131,7 +131,7 @@ def execute(self, sim):
 def execute(self, sim):  
     \# ... (validate liveness) ...  
               
-    \# Add symmetric, temporal spouse relationships  
+    \# Add symmetric, temporal partner relationships  
     sim.relationships.add\_relationship(  
         self.person\_a, self.person\_b, RelationType.SPOUSE,  
         start\_time=self.time  
@@ -162,17 +162,17 @@ def execute(self, sim):
     \# 3\. End active, mutable relationships (REQ-AL-004)  
       
     \# 3a. End SPOUSE relationships  
-    active\_spouses \= sim.relationships.get\_outbound(  
+    active\_partner \= sim.relationships.get\_outbound(  
         self.person\_id, RelationType.SPOUSE, active\_at\_time=self.time  
     )  
-    for spouse\_id, \_, \_ in active\_spouses:  
-        sim.relationships.end\_relationship(self.person\_id, spouse\_id, RelationType.SPOUSE, self.time)  
-        sim.relationships.end\_relationship(spouse\_id, self.person\_id, RelationType.SPOUSE, self.time)  
+    for partner\_id, \_, \_ in active\_partner:  
+        sim.relationships.end\_relationship(self.person\_id, partner\_id, RelationType.SPOUSE, self.time)  
+        sim.relationships.end\_relationship(partner\_id, self.partner\_id, RelationType.SPOUSE, self.time)  
           
-        \# Set living spouse to widowed  
-        spouse \= sim.population\[spouse\_id\]  
-        if spouse.is\_alive(self.time):  
-            sim.set\_person\_widowed(spouse\_id, spouse.gender)  
+        \# Set living partner to widowed  
+        partner \= sim.population\[partner\_id\]  
+        if partner.is\_alive(self.time):  
+            sim.set\_person\_widowed(partner\_id, partner.gender)  
       
     \# 3b. End APPRENTICE relationships (as master)  
     active\_apprentices \= sim.relationships.get\_outbound(  

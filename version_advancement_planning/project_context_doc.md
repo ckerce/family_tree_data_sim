@@ -40,7 +40,7 @@ The simulation must export graphs with:
 
 **Edges:** Typed relationships with temporal bounds
 - PARENT (person_a → person_b, start_time, immutable)
-- SPOUSE (bidirectional, start_time, end_time on death/widowhood)
+- PARTNER (bidirectional, start_time, end_time on death/widowhood)
 - APPRENTICE (master → apprentice, start_time, end_time on graduation/death)
 - Future types: SIBLING, TRADE_PARTNER, PATRON, etc.
 
@@ -65,7 +65,7 @@ The graph should enable ILP/GNN methods to discover patterns like:
 - "Skill accumulation rate predicts graduation success"
 
 **Temporal patterns:**
-- "Marriage at age X predicts Y children"
+- "Partnership at age X predicts Y children"
 - "Early apprenticeships lead to earlier mastery"
 - "Death clustering indicates resource stress events"
 
@@ -79,7 +79,7 @@ The graph should enable ILP/GNN methods to discover patterns like:
 
 **Demographics:**
 - Birth, aging, death (natural, infant mortality, resource-driven)
-- Marriage, reproduction, widowhood
+- Partnership, reproduction, widowhood
 - Kinship networks (parent-child, siblings, extended family)
 - Gender ratio dynamics
 
